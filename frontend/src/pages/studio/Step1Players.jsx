@@ -21,12 +21,16 @@ export default function Step1Players() {
 
     try {
       const res = await fetch(
-        `http://127.0.0.1:8000/scan-players?sport=${encodeURIComponent(sport)}`
+        `https://ytautomation-backend.onrender.com/scan-players?sport=${encodeURIComponent(sport)}`
       );
+
+      if (!res.ok) {
+        throw new Error("Server error");
+      }
 
       const data = await res.json();
 
-      console.log("API RESPONSE:", data); // 🔍 debug
+      console.log("API RESPONSE:", data);
 
       setPlayers(data.players || []);
       setNewCount(data.new_count || 0);
@@ -41,7 +45,7 @@ export default function Step1Players() {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px", fontFamily: "Arial" }}>
       <h1>Step 1: Scan Players</h1>
 
       <input
@@ -49,7 +53,7 @@ export default function Step1Players() {
         placeholder="Enter sport (e.g. rugby)"
         value={sport}
         onChange={(e) => setSport(e.target.value)}
-        style={{ marginRight: "10px", padding: "5px" }}
+        style={{ marginRight: "10px", padding: "8px", width: "200px" }}
       />
 
       <button
