@@ -3,7 +3,7 @@ import requests
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from backend.app.services.scraper import get_players_from_wikipedia
+from app.services.scraper import get_players_from_wikipedia
 
 load_dotenv()
 
